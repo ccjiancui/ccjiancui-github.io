@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在 Swift 中，switch 语句会尝试把某个值与若干个模式 pattern 进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。 与 if/else 不同，switch 非常适合处理多重条件。 switch 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 case 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 default 分支来涵盖其它所有没">
+<meta property="og:type" content="article">
+<meta property="og:title" content=" Swift 中 switch 语句最佳实践">
+<meta property="og:url" content="http://yoursite.com/2017/11/07/Swift-中正确的使用-switch/index.html">
+<meta property="og:site_name" content="ccjiancui">
+<meta property="og:description" content="在 Swift 中，switch 语句会尝试把某个值与若干个模式 pattern 进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。 与 if/else 不同，switch 非常适合处理多重条件。 switch 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 case 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 default 分支来涵盖其它所有没">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-12T02:31:01.167Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content=" Swift 中 switch 语句最佳实践">
+<meta name="twitter:description" content="在 Swift 中，switch 语句会尝试把某个值与若干个模式 pattern 进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。 与 if/else 不同，switch 非常适合处理多重条件。 switch 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 case 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 default 分支来涵盖其它所有没">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/07/Swift-中正确的使用-switch/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> Swift 中 switch 语句最佳实践 | ccjiancui</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ccjiancui</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">当你觉得为时已晚的时候，恰恰是最早的开始</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+</li>
+
+      
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/07/Swift-中正确的使用-switch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ccjiancui">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"> Swift 中 switch 语句最佳实践<a href="https://github.com/theme-next/theme-next.org/_posts/tree/master/Swift-中正确的使用-switch.md" class="post-edit-link" title="Edit this post" target="_blank">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-07T11:06:22+08:00">2017-11-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在 Swift 中，<code>switch</code> 语句会尝试把某个值与若干个模式 <code>pattern</code> 进行匹配。根据第一个匹配成功的模式，<code>switch</code> 语句会执行对应的代码。 与 <code>if/else</code> 不同，<code>switch</code> 非常适合处理多重条件。</p>
+<p><code>switch</code> 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 <code>case</code> 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 <code>default</code> 分支来涵盖其它所有没有对应的值，这个默认分支必须在<code>switch</code>语句的最后面。如果 <code>case</code> 语句已经覆盖到所有的情况，<code>default</code> 分支是不需要写的。</p>
+<h3 id="不存在隐式的贯穿"><a href="#不存在隐式的贯穿" class="headerlink" title="不存在隐式的贯穿"></a>不存在隐式的贯穿</h3><p>与 <code>C</code> 和 <code>Objective-C</code> 中的 <code>switch</code> 语句不同，在 Swift 中，当匹配的 <code>case</code> 分支中的代码执行完毕后，程序会终止 <code>switch</code> 语句，而不会继续执行下一个 <code>case</code> 分支。这也就是说，不需要在 <code>case</code> 分支中显式地使用 <code>break</code> 语句。这使得 <code>switch</code> 语句更安全、更易用，也避免了因忘记写 <code>break</code> 语句而产生的错误。</p>
+<h3 id="分支可以有多个值（符合匹配）"><a href="#分支可以有多个值（符合匹配）" class="headerlink" title="分支可以有多个值（符合匹配）"></a>分支可以有多个值（符合匹配）</h3><p>如果需要将多个值归类为一种情况，那么可以在 <code>case</code> 中以逗号隔开，如果匹配了这个分支的任何一个值，都会执行相应语句。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> statusCode = <span class="number">404</span></div><div class="line"><span class="keyword">var</span> errorString = <span class="string">"The request failed"</span></div><div class="line"></div><div class="line"><span class="keyword">switch</span> statusCode &#123;</div><div class="line"><span class="keyword">case</span> <span class="number">400</span>, <span class="number">401</span>, <span class="number">403</span>, <span class="number">404</span>:</div><div class="line">    errorString = <span class="string">"There are something wrong with the request"</span></div><div class="line">    <span class="keyword">fallthrough</span></div><div class="line"><span class="keyword">default</span>:</div><div class="line">    errorString += <span class="string">"please review the request and try again"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的代码还添加了 <strong><code>fallthrough</code></strong> 的状态转移语句（control transfer statement）状态转移语句能让你修改某个控制流中的代码执行顺序。这类语句能把控制权从一块代码传到另一块代码。</p>
+<p>在这里，<code>fallthrough</code> 告诉 <code>switch</code> 语句从一个分支的底部“漏”（fall through）到下一个分支去。如果某个匹配的分支末尾有 <code>fallthrough</code> 控制转移语句，它先会执行自己代码，再把控制权转移到下面紧挨的分支。紧挨的分支又会执行自己的代码，无论它跟正在检验的值是否匹配。如果那个分支的末尾也有 <code>fallthrough</code> 语句，它就会把控制权传递给再下一个分支，以此类推。</p>
+<blockquote>
+<p><code>fallthrough</code> 语句能让你不需要进行匹配就能进入一个分支并执行其代码</p>
+</blockquote>
+<h3 id="区间匹配"><a href="#区间匹配" class="headerlink" title="区间匹配"></a>区间匹配</h3><p><code>case</code> 分支的模式也可以是一个值的区间。</p>
+<h3 id="值绑定"><a href="#值绑定" class="headerlink" title="值绑定"></a>值绑定</h3><p>值绑定能在某个特定分支中把待匹配的值绑定到本地的常量或变量上。这个常量或变量只能在该分支中使用</p>
+<h3 id="where-子句"><a href="#where-子句" class="headerlink" title="where 子句"></a>where 子句</h3><p><code>where</code> 能让你额外检查一些条件，只有满足这些条件后才会匹配这个分支并绑定值。这个特性可以在 <code>switch</code> 中创建一些动态筛选条件。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> statusCode = <span class="number">200</span></div><div class="line"><span class="keyword">var</span> errorString = <span class="string">"The request failed with error:"</span></div><div class="line"></div><div class="line"><span class="keyword">switch</span> statusCode &#123;</div><div class="line"><span class="keyword">case</span> <span class="number">100</span>, <span class="number">101</span>: </div><div class="line">    errorString += <span class="string">" Informational, <span class="subst">\(statusCode)</span>."</span></div><div class="line"><span class="keyword">case</span> <span class="number">204</span>:</div><div class="line">    errorString += <span class="string">" Successful but no content, 204."</span></div><div class="line"><span class="keyword">case</span> <span class="number">300</span>...<span class="number">307</span>: <span class="comment">// 区间匹配</span></div><div class="line">    errorString += <span class="string">" Redirection, <span class="subst">\(statusCode)</span>."</span></div><div class="line"><span class="keyword">case</span> <span class="number">400</span>...<span class="number">417</span>:</div><div class="line">    errorString += <span class="string">" Client error, <span class="subst">\(statusCode)</span>."</span></div><div class="line"><span class="keyword">case</span> <span class="number">500</span>...<span class="number">505</span>:</div><div class="line">    errorString += <span class="string">" Server error, <span class="subst">\(statusCode)</span>."</span></div><div class="line"><span class="keyword">case</span> <span class="keyword">let</span> unknowCode <span class="keyword">where</span> (unknowCode &gt;= <span class="number">200</span> &amp;&amp; unknowCode &lt; <span class="number">300</span>) || unknowCode &gt; <span class="number">505</span>: <span class="comment">// 值绑定 和 where 额外条件</span></div><div class="line">    errorString = <span class="string">"<span class="subst">\(unknowCode)</span> is not a know error code."</span></div><div class="line"><span class="keyword">default</span>:</div><div class="line">    errorString = <span class="string">"Unexpected error encountered."</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用元祖做模式匹配"><a href="#使用元祖做模式匹配" class="headerlink" title="使用元祖做模式匹配"></a>使用元祖做模式匹配</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> firstErrorCode = <span class="number">404</span></div><div class="line"><span class="keyword">let</span> secondErrorCode = <span class="number">200</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> errorCodes = (firstErrorCode, secondErrorCode)</div><div class="line"></div><div class="line"><span class="keyword">switch</span> errorCodes &#123;</div><div class="line"><span class="keyword">case</span> (<span class="number">404</span>, <span class="number">404</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"No items found"</span>)</div><div class="line"><span class="keyword">case</span> (<span class="number">404</span>, <span class="number">_</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"First item not found"</span>)</div><div class="line"><span class="keyword">case</span> (<span class="number">_</span>, <span class="number">404</span>):</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Second item not found"</span>)</div><div class="line"><span class="keyword">default</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"All items foun"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="单个条件的-if-case，让你关注关键的分支"><a href="#单个条件的-if-case，让你关注关键的分支" class="headerlink" title="单个条件的 if-case，让你关注关键的分支"></a>单个条件的 if-case，让你关注关键的分支</h3><p><code>switch</code> 语句主要用于比较一个值和多个潜在匹配的分支。<code>if/else</code> 语句则对于检查单个的条件更有用。Swift 还提供符合匹配，区间匹配，绑定值到本地常量或变量以及匹配元祖中的模式。有时候一个值与很多分支匹配，但是你只关心其中一种情况。这时你会忍不住使用 <code>switch</code> 语句。</p>
+<p>比如，你想去检查一个 <code>Int</code> 类型的年龄常量来寻找特定人群，如果我只关心18-35岁人群，使用 <code>switch</code> 就会如下</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> age = <span class="number">28</span></div><div class="line"></div><div class="line"><span class="comment">// 单个分支 switch</span></div><div class="line"><span class="keyword">switch</span> age &#123;</div><div class="line"><span class="keyword">case</span> <span class="number">18</span>...<span class="number">35</span>:</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Cool demographic"</span>)</div><div class="line"><span class="keyword">default</span>:</div><div class="line">    <span class="keyword">break</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>对于 age 不是这个年龄段的人群，那么 <code>default</code> 分支会匹配，也并不做什么处理，它只是简单地使用 <code>break</code> 控制转移语句把控制流转移到 <code>switch</code> 外面。</p>
+<p>注意，这里必须有 <code>default</code> 分支；<code>switch</code> 语句必须被全覆盖。如果你觉得这段代码不顺眼，那就对了。这里不需要做什么，所以用了 <code>break</code>。在不需要做什么的时候, 不写代码当然是最好的啦！</p>
+<p>Swift 提供了一种更好的方式来实现这种逻辑。<code>if-case</code> 语句来提供类似于 <code>switch</code> 语句的模式匹配能力。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> age = <span class="number">28</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> <span class="keyword">case</span> <span class="number">18</span>...<span class="number">35</span> = age &#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"Cool demographic"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这种语法就优雅多了，只要简单检查 age 是否在给定区间内，而不需要写一个你并不关注的 <code>default</code> 分支。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/07/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">jian</p>
+              <p class="site-description motion-element" itemprop="description">当你觉得为时已晚的时候，恰恰是最早的开始</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#不存在隐式的贯穿"><span class="nav-number">1.</span> <span class="nav-text">不存在隐式的贯穿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支可以有多个值（符合匹配）"><span class="nav-number">2.</span> <span class="nav-text">分支可以有多个值（符合匹配）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区间匹配"><span class="nav-number">3.</span> <span class="nav-text">区间匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值绑定"><span class="nav-number">4.</span> <span class="nav-text">值绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where-子句"><span class="nav-number">5.</span> <span class="nav-text">where 子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用元祖做模式匹配"><span class="nav-number">6.</span> <span class="nav-text">使用元祖做模式匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单个条件的-if-case，让你关注关键的分支"><span class="nav-number">7.</span> <span class="nav-text">单个条件的 if-case，让你关注关键的分支</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jian</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.4.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Gemini</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
