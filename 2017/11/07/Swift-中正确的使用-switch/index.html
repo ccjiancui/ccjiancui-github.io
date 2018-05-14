@@ -100,15 +100,16 @@
 
 
   <meta name="description" content="在 Swift 中，switch 语句会尝试把某个值与若干个模式 pattern 进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。 与 if/else 不同，switch 非常适合处理多重条件。 switch 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 case 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 default 分支来涵盖其它所有没">
+<meta name="keywords" content="Swift 基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" Swift 中 switch 语句最佳实践">
+<meta property="og:title" content="Swift 中 switch 语句最佳实践">
 <meta property="og:url" content="http://yoursite.com/2017/11/07/Swift-中正确的使用-switch/index.html">
 <meta property="og:site_name" content="CC">
 <meta property="og:description" content="在 Swift 中，switch 语句会尝试把某个值与若干个模式 pattern 进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。 与 if/else 不同，switch 非常适合处理多重条件。 switch 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 case 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 default 分支来涵盖其它所有没">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-12T02:31:01.167Z">
+<meta property="og:updated_time" content="2018-05-14T07:47:47.051Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" Swift 中 switch 语句最佳实践">
+<meta name="twitter:title" content="Swift 中 switch 语句最佳实践">
 <meta name="twitter:description" content="在 Swift 中，switch 语句会尝试把某个值与若干个模式 pattern 进行匹配。根据第一个匹配成功的模式，switch 语句会执行对应的代码。 与 if/else 不同，switch 非常适合处理多重条件。 switch 语句必须被全覆盖。这就是说，每一个可能的值都必须至少有一个 case 分支与之对应。在某些不可能涵盖所有值的情况下，可以使用默认 default 分支来涵盖其它所有没">
 
 
@@ -126,7 +127,7 @@
   };
 </script>
 
-  <title> Swift 中 switch 语句最佳实践 | CC</title>
+  <title>Swift 中 switch 语句最佳实践 | CC</title>
   
 
 
@@ -243,6 +244,16 @@
         
           
   
+  <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  
   <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
@@ -315,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"> Swift 中 switch 语句最佳实践<a href="https://github.com/theme-next/theme-next.org/_posts/tree/master/Swift-中正确的使用-switch.md" class="post-edit-link" title="编辑" target="_blank">
+          <h1 class="post-title" itemprop="name headline">Swift 中 switch 语句最佳实践<a href="https://github.com/theme-next/theme-next.org/_posts/tree/master/Swift-中正确的使用-switch.md" class="post-edit-link" title="编辑" target="_blank">
                     <i class="fa fa-pencil"></i>
                   </a>
                 
@@ -343,8 +354,37 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/07/Swift-中正确的使用-switch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/07/Swift-中正确的使用-switch/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -411,6 +451,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Swift-基础/" rel="tag"># Swift 基础</a>
+          
+        </div>
+      
 
       
       
@@ -453,6 +499,16 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -509,7 +565,33 @@
               
 
               
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
             </nav>
           
@@ -715,6 +797,31 @@
 
   
 
+  
+    <script id="dsq-count-scr" src="https://ccjiancui.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2017/11/07/Swift-中正确的使用-switch/';
+        this.page.identifier = '2017/11/07/Swift-中正确的使用-switch/';
+        this.page.title = 'Swift 中 switch 语句最佳实践';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ccjiancui.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
 
 
 	
@@ -726,10 +833,6 @@
   
 
 
-
-
-
-  
 
 
 
