@@ -99,24 +99,24 @@
 
 
 
-  <meta name="description" content="The earliest moment is when you think it&apos;s too late🤣">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+  <meta name="description" content="Swift 4.1 与 OC 桥接浮点型转换问题最近升级到 Xcode 9.4 Swift 4.1 发现一个浮点数异常的问题，主要发生在接口请求后的数据解析时候，从 AnyObject 中解析字典中的浮点类型数据使用 as? Float 类型时候失败，获取不到浮点数据。 猜测应该 OC 类型桥接到 Swift 中出现了变化，在 Swift 中，浮点数的默认推断类型是 Double。 我们知道自 S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift 4.1 与 OC 桥接浮点型转换问题">
+<meta property="og:url" content="http://yoursite.com/2018/07/17/Swift和OC浮点类型的问题/index.html">
 <meta property="og:site_name" content="CC">
-<meta property="og:description" content="The earliest moment is when you think it&apos;s too late🤣">
+<meta property="og:description" content="Swift 4.1 与 OC 桥接浮点型转换问题最近升级到 Xcode 9.4 Swift 4.1 发现一个浮点数异常的问题，主要发生在接口请求后的数据解析时候，从 AnyObject 中解析字典中的浮点类型数据使用 as? Float 类型时候失败，获取不到浮点数据。 猜测应该 OC 类型桥接到 Swift 中出现了变化，在 Swift 中，浮点数的默认推断类型是 Double。 我们知道自 S">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-14T07:49:20.998Z">
+<meta property="og:updated_time" content="2018-07-17T07:56:17.829Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="The earliest moment is when you think it&apos;s too late🤣">
+<meta name="twitter:title" content="Swift 4.1 与 OC 桥接浮点型转换问题">
+<meta name="twitter:description" content="Swift 4.1 与 OC 桥接浮点型转换问题最近升级到 Xcode 9.4 Swift 4.1 发现一个浮点数异常的问题，主要发生在接口请求后的数据解析时候，从 AnyObject 中解析字典中的浮点类型数据使用 as? Float 类型时候失败，获取不到浮点数据。 猜测应该 OC 类型桥接到 Swift 中出现了变化，在 Swift 中，浮点数的默认推断类型是 Double。 我们知道自 S">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/17/Swift和OC浮点类型的问题/"/>
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>标签 | CC</title>
+  <title>Swift 4.1 与 OC 桥接浮点型转换问题 | CC</title>
   
 
 
@@ -233,7 +233,7 @@
         
           
   
-  <li class="menu-item menu-item-tags menu-item-active">
+  <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
@@ -288,84 +288,190 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/17/Swift和OC浮点类型的问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="JianCui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CC">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">标签</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">Swift 4.1 与 OC 桥接浮点型转换问题<a href="https://github.com/theme-next/theme-next.org/_posts/tree/master/Swift和OC浮点类型的问题.md" class="post-edit-link" title="编辑" target="_blank">
+                    <i class="fa fa-pencil"></i>
+                  </a>
                 
-                
-                  
-                    
-                  
-                
-                目前共计 1 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Swift-基础/" style="font-size: 12px; color: #ccc">Swift 基础</a>
-            </div>
-          </div>
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T15:41:52+08:00">2018-07-17</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Swift/" itemprop="url" rel="index"><span itemprop="name">Swift</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/17/Swift和OC浮点类型的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/17/Swift和OC浮点类型的问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Swift-4-1-与-OC-桥接浮点型转换问题"><a href="#Swift-4-1-与-OC-桥接浮点型转换问题" class="headerlink" title="Swift 4.1 与 OC 桥接浮点型转换问题"></a>Swift 4.1 与 OC 桥接浮点型转换问题</h1><p>最近升级到 <code>Xcode 9.4 Swift 4.1</code> 发现一个浮点数异常的问题，主要发生在接口请求后的数据解析时候，从 <code>AnyObject</code> 中解析字典中的浮点类型数据使用 <code>as? Float</code> 类型时候失败，获取不到浮点数据。</p>
+<p>猜测应该 <code>OC</code> 类型桥接到 <code>Swift</code> 中出现了变化，在 <code>Swift</code> 中，浮点数的默认推断类型是 <code>Double</code>。</p>
+<p>我们知道自 <code>Swift 1.2</code> 之后如果你想让一个 <code>Double as? Float</code> 应该是会失败的，编译器不会自动去转换类型，不同数据类型是不能 <code>as</code> 成另一个类型的, 只能通过转换类型数据，浮点类型的转换会影响精度。</p>
+<h6 id="Swift-4-0-下的结果"><a href="#Swift-4-0-下的结果" class="headerlink" title="Swift 4.0 下的结果"></a>Swift 4.0 下的结果</h6><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> dict = <span class="type">NSDictionary</span>(dictionary: [<span class="string">"price"</span> : <span class="number">5.56</span>])</div><div class="line"><span class="keyword">let</span> priceValue = dict[<span class="string">"price"</span>] <span class="keyword">as</span>? <span class="type">Float</span></div><div class="line"><span class="comment">//  priceValue 的 值是 5.56</span></div></pre></td></tr></table></figure>
+<h6 id="Swift-4-1-下的结果"><a href="#Swift-4-1-下的结果" class="headerlink" title="Swift 4.1 下的结果"></a>Swift 4.1 下的结果</h6><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> dict = <span class="type">NSDictionary</span>(dictionary: [<span class="string">"price"</span> : <span class="number">5.56</span>])</div><div class="line"><span class="keyword">let</span> priceValue = dict[<span class="string">"price"</span>] <span class="keyword">as</span>? <span class="type">Float</span></div><div class="line"><span class="comment">//  priceValue 的 值是 nil</span></div></pre></td></tr></table></figure>
+<p>使用 <code>CGFloat</code> 也会有类似的问题，使用 <code>as？CGFloat</code>，64位环境下是可以自动转换的，但是如果是32位的设备，比如 iPhone5 等设备也是同样会失败。</p>
+<p>在 <code>OC</code> 中我们使用 <code>Float</code> 和 <code>CGFloat</code> 表示浮点类型再常见不过，<code>OC</code> 类型桥接到 <code>Swift</code> 过程中只会使用默认推断的数据类型，<code>Swift</code> 编译器正减少了自动转换工作， <code>Swift</code> 和 <code>OC</code> 区别的也越来越明显了</p>
+<p>当然，在 <code>Swift</code> 里浮点类型应该直接使用默认 <code>Double</code> 类型，除非有特殊需要才声明成 <code>Float</code> 类型，这样会极大避免类型转换带来的问题和不便。</p>
+
       
     </div>
+
     
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/07/Swift-中正确的使用-switch/" rel="next" title="Swift 中 switch 语句最佳实践">
+                <i class="fa fa-chevron-left"></i> Swift 中 switch 语句最佳实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
 
-    
-    
-    
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -405,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,6 +611,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift-4-1-与-OC-桥接浮点型转换问题"><span class="nav-number">1.</span> <span class="nav-text">Swift 4.1 与 OC 桥接浮点型转换问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Swift-4-0-下的结果"><span class="nav-number">1.0.0.0.0.1.</span> <span class="nav-text">Swift 4.0 下的结果</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Swift-4-1-下的结果"><span class="nav-number">1.0.0.0.0.2.</span> <span class="nav-text">Swift 4.1 下的结果</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -651,9 +782,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://yoursite.com/tags/index.html';
-        this.page.identifier = 'tags/index.html';
-        this.page.title = '标签';
+        this.page.url = 'http://yoursite.com/2018/07/17/Swift和OC浮点类型的问题/';
+        this.page.identifier = '2018/07/17/Swift和OC浮点类型的问题/';
+        this.page.title = 'Swift 4.1 与 OC 桥接浮点型转换问题';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');
